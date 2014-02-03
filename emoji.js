@@ -8,10 +8,12 @@ function filter_nodes(nodes, regexp) {
     return $(nodes).find('[contenteditable!="true"][contenteditable!="plaintext-only"]').addBack().filter(
         function(index) {
 			var result = false;
-			var text = $(this).just_text();
+			var $this = this ? $(this) : null;
+			if (!$this) { return result; }
+			var text = $this.just_text();
             var found = (text.search(regexp) != -1)
 			if(found) {
-				var html = $(this).html();
+				var html = $this.html();
 				if(html) {
 					var index = html.indexOf("document.write");
 					result = (index == -1);

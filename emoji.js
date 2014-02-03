@@ -9,7 +9,7 @@ function filter_nodes(nodes, regexp) {
         function(index) {
 			var result = false;
 			var $this = this ? $(this) : null;
-			if (!$this) { return result; }
+			if (!$this || !$this.just_text) { return result; }
 			var text = $this.just_text();
             var found = (text.search(regexp) != -1)
 			if(found) {
